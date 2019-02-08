@@ -8,7 +8,7 @@ export default {
   name: 'app',
   mounted: function() {
         var scaling = "fit";
-        var width = 1024;
+        var width = 1024 + 500;
         var height = 768;
         var countPieces = 0;
         var totalPieces = 0;
@@ -175,7 +175,11 @@ export default {
                         hint.graphics._fill = fill;
                         hint.graphics._fill.style = null;
                         hint.addTo(con,0);
-                        s.animate({obj:{x:rand(-offsetX,frame.width-offsetX-pieceWidth),y:rand(-offsetY,frame.height-offsetY-pieceHeight)}, time:700});
+                        if (rand(0, 100) > 50)
+                            var x = rand(-offsetX + 100, -offsetX +150)
+                        else
+                            var x = frame.width - offsetX - 300 + rand(0, 50)
+                        s.animate({obj:{x:x,y:rand(-offsetY + 50,frame.height-offsetY-pieceHeight - 50)}, time:700});
                     }
                 }
                 con.addTo(stage);
